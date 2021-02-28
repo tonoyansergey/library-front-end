@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark bg-primary">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/library-admin/" [routerLinkActiveOptions]="{ exact: true }"   routerLinkActive="active">Home</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/library-admin/users" routerLinkActive="active" class="nav-link">Users</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/library-admin/books" routerLinkActive="active" class="nav-link">Books</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/library-admin/bookings" routerLinkActive="active" class="nav-link">Bookings</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/library-admin/loans" routerLinkActive="active" class="nav-link">Loans</a>
+    </li>
+  </ul>
+<!--    <form class="form-inline my-2 my-lg-0">-->
+<!--      <input class="form-control mr-sm-2" type="search" placeholder="Search">-->
+<!--      <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>-->
+<!--    </form>-->
+<!--  <div class="search-book">-->
+<!--    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching by id, title, genre or author">-->
+<!--  </div>-->
+
+</nav>
+<router-outlet></router-outlet>
+
+

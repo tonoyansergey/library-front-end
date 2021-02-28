@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{title}}</h1>
+
+<mat-dialog-content form [formGroup]="form">
+  <mat-form-field>
+    <input matInput value="{{bookingData.user.userName}}" type="text" placeholder="User" formControlName="user" required readonly>
+    <mat-hint align="end">Not modifiable</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput value="{{bookingData.book.title}}" type="text" placeholder="Book" formControlName="book" required readonly>
+    <mat-hint align="end">Not modifiable</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select formControlName="loanDays" placeholder="Days">
+            <mat-option value="5">5</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="15">15</mat-option>
+    </mat-select>
+    <mat-error align="end" *ngIf="hasError('loanDays', 'required')">Field is required</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="form.value">Add</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>
+

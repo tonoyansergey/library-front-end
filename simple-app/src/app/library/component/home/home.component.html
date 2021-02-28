@@ -1,0 +1,37 @@
+<div *ngIf="this.tokenService.isLogged() else elseBlock" class="wc">
+  <div class="bookings">
+    <h1>Welcome, {{userName}}</h1>
+    <div *ngIf="bookings">
+    <h5>Active bookings</h5>
+    <table   class="table table-hover table-sm table-light" id="booking-table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Book title</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Receipt code</th>
+        <th scope="col">Expires in</th>
+        <th scope="col">Cancel</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let booking of bookings; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{booking.book.title}}</td>
+        <td>{{booking.book.genre.genreName}}</td>
+        <td>{{booking.receiptCode}}</td>
+        <td>
+          <countdown-timer (zeroTrigger)="deleteBooking(booking.id)" [end]=booking.expireDate></countdown-timer>
+        </td>
+        <td><em class="material-icons" (click)="cancelBooking(i)">clear</em></td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock >
+  <div class="sign-login">
+      <h1>Please, <a routerLink="/library/sign-up">Sign Up </a>or <a routerLink="/library/login">Log In</a></h1>
+  </div>
+</ng-template>

@@ -1,0 +1,99 @@
+<!--<div class="search-book">-->
+<!--  <form class="active-pink active-pink-2">-->
+<!--    <span class="fa fa-search form-control-feedback"></span>-->
+<!--    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching" aria-label="Search">-->
+<!--  </form>-->
+<!--</div>-->
+
+<!--<table  class="table table-hover table-sm table-light" id="booking-table">-->
+<!--  <thead class="thead-dark">-->
+<!--  <tr>-->
+<!--    <th scope="col">#</th>-->
+<!--    <th scope="col">Title</th>-->
+<!--    <th scope="col">Genre<button type="button" id="add-genre-button" class="btn btn-outline-warning" (click)="addGenre()">New</button></th>-->
+<!--    <th scope="col">Author<button type="button" id="add-author-button" class="btn btn-outline-warning" (click)="addAuthor()">New</button></th>-->
+<!--    <th scope="col">Quantity</th>-->
+<!--    <th scope="col">Edit</th>-->
+<!--    <th scope="col">Delete</th>-->
+<!--    <th scope="col"  width="10%"><button type="button" id="add-button" class="btn btn-outline-warning" (click)="addBook()">Add new book</button></th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+
+<!--  <tr *ngFor="let book of books | filter: searchText, let i = index">-->
+<!--    <th scope="row">{{book.id}}</th>-->
+<!--    <td>{{book.title}}</td>-->
+<!--    <td>{{book.genre.genreName}}</td>-->
+<!--    <td>{{book.author.authorName}}</td>-->
+<!--    <td>{{book.quantity}}</td>-->
+<!--    <td><button type="button" class="btn btn-outline-primary" id="edit-button" (click)="editBook(i)">Edit</button></td>-->
+<!--    <td colspan="2"><button type="button" class="btn btn-outline-danger" id="delete-button" (click)="deleteBook(book.id)">Delete</button></td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+<div class="admin-content">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <em class="material-icons add-data" (click)="addBook()">post_add</em>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell  *matCellDef="let row">{{row.title}} </mat-cell>
+      </ng-container>
+
+      <!-- Genre Column -->
+      <ng-container matColumnDef="genre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="genre.genreName"> Genre
+          <em class="material-icons" (click)="addGenre()">add_circle_outline</em> </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.genre.genreName}}</mat-cell>
+      </ng-container>
+
+      <!-- Author Column -->
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef mat-sort-header="author.authorName"> Author
+          <em class="material-icons" (click)="addAuthor()">add_circle_outline</em> </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.author.authorName}}</mat-cell>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.quantity}}</mat-cell>
+      </ng-container>
+
+      <!-- Edit Column -->
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <em class="material-icons" (click)="editBook(row.id)">edit</em>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <em class="material-icons" (click)="deleteBook(row.id)">delete</em>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+  </div>
+</div>

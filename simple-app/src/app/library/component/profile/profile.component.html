@@ -1,0 +1,12 @@
+<div *ngIf="user" class="profile-content">
+  <div class="full-name">
+    <h1>{{user.firstName}} {{user.lastName}}</h1>
+  </div>
+  <div class="email">
+    <h3>{{user.email}}</h3>
+  </div>
+  <div class="edit">
+    <button type="button" class="btn btn-light" (click)="editProfile()">Edit profile</button>
+    <button type="button" class="btn btn-warning" (click)="changePassword()">Change password</button>
+  </div>
+</div>

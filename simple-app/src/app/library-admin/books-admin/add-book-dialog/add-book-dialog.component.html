@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{title}}</h1>
+
+<mat-dialog-content form [formGroup]="form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title" formControlName="title" required>
+    <mat-hint align="end">Not more than 45 characters long</mat-hint>
+    <mat-error align="end" *ngIf="hasError('title', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('title', 'minlength')">Not less than 2 characters long</mat-error>
+    <mat-error align="end" *ngIf="hasError('title', 'maxlength')">You have more than 45 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Quantity" formControlName="quantity" required>
+    <mat-hint align="end">Not less than 0</mat-hint>
+    <mat-error align="end" *ngIf="hasError('quantity', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('quantity', 'min')">Must be 0 or higher</mat-error>
+    <mat-error align="end" *ngIf="hasError('quantity', 'pattern')">Number only</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select formControlName="genre" placeholder="Genre">
+      <mat-option *ngFor="let genre of genres" [value]=genre>{{genre.genreName}}</mat-option>
+    </mat-select>
+    <mat-error align="end" *ngIf="hasError('genre', 'required')">Field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select formControlName="author" placeholder="Author">
+      <mat-option  *ngFor="let author of authors" [value]=author>{{author.authorName}}</mat-option>
+    </mat-select>
+    <mat-error align="end" *ngIf="hasError('author', 'required')">Field is required</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [disabled]="!form.valid || form.untouched || !form.dirty" [mat-dialog-close]="form">Add</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>
+

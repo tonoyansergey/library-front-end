@@ -1,0 +1,20 @@
+<form #userLoginDTO="ngForm" (ngSubmit)="userLoginDTO.valid  && onSubmit(userLoginDTO)" class="form-box" id="form-login">
+  <h3 class="h4 text-black mb-4">Log In</h3>
+    <div *ngIf="error" class="alert alert-danger" id="wrong">
+      <div>{{error}}</div>
+    </div>
+    <div *ngIf="(userLoginDTO.invalid && (userLoginDTO.touched || userLoginDTO.dirty))" class="alert alert-danger" id="wrong">
+      <div>
+        All fields are required !
+      </div>
+    </div>
+      <div class="form-group">
+        <input ngModel type="text" #name=ngModel class="form-control" name="userName" placeholder="Username" required>
+      </div>
+      <div class="form-group">
+        <input ngModel type="password" #pass=ngModel class="form-control" name="password" placeholder="Password" required>
+      </div>
+  <div class="form-group">
+    <input class="btn btn-primary btn-pill"  type="submit" value="Log In">
+  </div>
+</form>

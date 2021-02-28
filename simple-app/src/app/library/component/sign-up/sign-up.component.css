@@ -1,0 +1,58 @@
+.login-form {
+  width:17%;
+  margin-top: 9%;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+.login-form h6 {
+  margin-left: 10%;
+  color: orangered;
+  padding-bottom: 10px;
+}
+
+#remember-me {
+  margin-left: 13%;
+}
+
+#login-btn {
+  margin-left: 23%;
+  width: 50%;
+}
+
+.sign-up-ref {
+  margin-left: 20%;
+  margin-top: 13%;
+}
+
+.sign-up-ref h1 {
+  font-size: 16px;
+}
+
+.sign-up-ref a {
+  font-size: 18px;
+}
+
+body {
+  max-width: 1600px;
+}
+
+
+.side {
+
+  outline-style: dashed;
+  width: 300px;
+}
+
+.content {
+  outline-style: dashed;
+
+  width: 900px;
+}
+
+#form-login {
+  margin-left: 800px;
+  margin-top: 1%;
+  width: 30%;
+
+}

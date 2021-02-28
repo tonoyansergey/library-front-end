@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>{{title}}</h1>
+
+<mat-dialog-content form [formGroup]="form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Id" formControlName="id" readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title" formControlName="title" readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Author" formControlName="author" readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Genre" formControlName="genre" readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Quantity" formControlName="qnt" readonly>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" [mat-dialog-close]>Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Verification</h1>
+<mat-dialog-content form [formGroup]="form">
+<!--  <mat-form-field>-->
+<!--    <input #vCode ngModel type="text" matInput placeholder="Verification code" required>-->
+<!--  </mat-form-field>-->
+  <mat-form-field>
+    <input matInput type="text" placeholder="Verification code" formControlName="verCode" required>
+    <mat-hint align="end">Code was sent to your email</mat-hint>
+    <mat-error align="end" *ngIf="hasError('verCode', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('verCode', 'minlength')">Must be 6 character</mat-error>
+    <mat-error align="end" *ngIf="hasError('verCode', 'maxlength')">Must be 6 character</mat-error>
+    <mat-error align="end" *ngIf="hasError('verCode', 'wrongCode')">Invalid code</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitVCode(form.controls.verCode.value)">Confirm</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>

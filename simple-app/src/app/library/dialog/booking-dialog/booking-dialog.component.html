@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<mat-dialog-content form [formGroup]="form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Book" formControlName="book" required readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Genre" formControlName="genre" required readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Author" formControlName="author" required readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="email" placeholder="Email" formControlName="email" required>
+    <mat-hint align="end">Input your registration email</mat-hint>
+    <mat-error align="end" *ngIf="hasError('email', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('email', 'pattern')">Wrong pattern</mat-error>
+    <mat-error align="end" *ngIf="hasError('email', 'wrongEmail')">Does not match</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [disabled]="!form.valid || form.untouched || !form.dirty" (click)="verifyEmail(form.controls.email.value)">Submit</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>

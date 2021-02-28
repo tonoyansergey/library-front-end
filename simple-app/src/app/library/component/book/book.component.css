@@ -1,0 +1,85 @@
+#book-container {
+
+  width: 200px;
+  height: 230px;
+  margin-top: 20px;
+  margin-left: 70px;
+  display: inline-block;
+  cursor: pointer;
+
+}
+
+.books {
+  position: relative;
+  width: 1150px;
+}
+
+.my-pagination /deep/ .ngx-pagination {
+
+  width: fit-content;
+  margin: auto;
+}
+
+.my-pagination /deep/ .ngx-pagination a {
+
+  color: white;
+}
+
+.my-pagination /deep/ .ngx-pagination a:hover {
+
+  background: #7971EA;
+}
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #3A2EEA;
+  color: white;
+  margin: auto;
+}
+
+.my-pagination /deep/ .ngx-pagination .current:hover {
+  background: #7971EA;
+
+}
+
+.paginator {
+  margin-top: 25px;
+}
+
+.search-book {
+  width: 55%;
+  margin: 0 auto 5px;
+}
+
+.form-control {
+  width: 100%;
+  background-color: #212529;
+  opacity: 0.8;
+  color: #FFFFFF;
+  padding-left: 2.375rem;
+  /*border-color: #FFFFFF;*/
+}
+
+::placeholder {
+  color: #FFFFFF;
+  opacity: 0.9;
+}
+
+::selection {
+  color: #000000;
+  background: #FFFFFF;
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}

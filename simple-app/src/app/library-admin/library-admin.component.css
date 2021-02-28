@@ -1,0 +1,20 @@
+/*.nav-bar li {*/
+/*  display: inline-grid;*/
+/*  margin-right: 5%;*/
+/*}*/
+
+/*header {*/
+/*  margin: auto;*/
+/*  outline-style: solid;*/
+/*  height: 17%;*/
+/*  width: fit-content;*/
+/*}*/
+
+.nav a {
+  color: #f7f7f7;
+}
+
+.admin-content {
+  width: 80%;
+  margin: 0 auto;
+}

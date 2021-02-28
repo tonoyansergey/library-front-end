@@ -1,0 +1,197 @@
+/*.sidebar {*/
+/*  width: 22.5%;*/
+/*  float: right;*/
+/*  background-color:rgba(121, 113, 234, 0.1);*/
+/*  !*background-color: #000000;*!*/
+/*}*/
+
+/*.top-books, .top-genres, .top-authors {*/
+/*  color: #000000;*/
+/*  width: 70%;*/
+/*  margin: 35px auto;*/
+/*  font-size: 17.5px;*/
+/*}*/
+
+/*p {*/
+/*  font-size: 21.5px;*/
+/*}*/
+
+/*.top-5 {*/
+/*  margin-top: 20px;*/
+/*  color: #000000;*/
+/*  text-align: center;*/
+/*}*/
+
+/*ul {*/
+/*  list-style-type: circle;*/
+/*}*/
+
+.content {
+  /*width: 77.5%;*/
+  width: 100%;
+}
+
+.title-period {
+  margin: 5px auto;
+  width: fit-content;
+  color: #000000;
+}
+
+.period-selection {
+  position: relative;
+  margin: 70px auto;
+  width: 42%;
+}
+
+.default-periods {
+  position: relative;
+  margin: 25px auto;
+  width: 70%;
+}
+
+.period-button {
+  margin-left: 16px;
+  padding: 4px 25px 4px 25px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.picker {
+  position: relative;
+  width: 65%;
+  margin: 0 auto;
+}
+
+#submit-button {
+  position: relative;
+  width: fit-content;
+  margin: 18px auto;
+}
+
+.submit {
+  font-size: 17px;
+  padding: 4px 25px 4px 25px;
+}
+
+
+
+.statistics {
+  margin: 0 auto 10%;
+  width: 80%;
+}
+
+/*.scroll-table {*/
+/*  display: block;*/
+/*  height: 100px;*/
+/*  overflow-y: scroll;*/
+/*}*/
+
+.scroll-table          {
+  overflow-y: auto; height: 500px; }
+
+.scroll-table thead th { position:
+  sticky; top: 0;
+}
+
+
+#statistics-table {
+  position: relative;
+  color: #000000;
+}
+
+.thead th {
+  background-color:#3F51B5;
+  color: #FFFFFF;
+  border-top: none;
+  border-bottom: none;
+}
+
+
+
+tr:hover {
+  background-color: rgba(121, 113, 234, 0.1);
+}
+
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #7971EA;
+  box-shadow: 0 1px 0 0 #7971EA;
+}
+
+.active-pink input[type=text] {
+  border-bottom: 1px solid #000000;
+  box-shadow: 0 1px 0 0 #7971EA;
+}
+.active-pink .fa {
+  color: #000000;
+}
+.form-control {
+  background-color: rgba(253, 253, 254, 0.5);
+  color: #000000;
+/*border-color: #FF4081;*/
+padding-left: 2.375rem;
+}
+
+
+
+.search-book {
+}
+
+::placeholder {
+  color: #000000;
+  opacity: 0.9;
+}
+
+input::selection {
+  color: #000000;
+  background: rgba(121, 113, 234, 0.1);
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+a {
+  cursor: pointer;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 650px;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+mat-tab-group {
+  width: 70%;
+  margin: 0 auto;
+}

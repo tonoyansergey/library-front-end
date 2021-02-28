@@ -1,0 +1,23 @@
+<div class="search-book">
+  <form class="active-pink active-pink-2">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching" aria-label="Search">
+  </form>
+</div>
+<div class="books">
+  <div  *ngFor="let book of books  | filter: searchText | paginate: { itemsPerPage: 8, currentPage: p } "  class="ih-item square effect13 right_to_left" id="book-container">
+    <a (click)="openBookingDialog(book)">
+    <div class="img"><img src="../../../../assets/images/about_1.png" alt="img"></div>
+      <div class="info">
+        <h3>{{book.title}}</h3>
+        <p>{{book.author.authorName}}</p>
+        <p>{{book.genre.genreName}}</p>
+
+      </div>
+    </a>
+  </div>
+    <div *ngIf="books?.length > 8" class="paginator">
+      <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+

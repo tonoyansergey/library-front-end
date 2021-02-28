@@ -1,0 +1,14 @@
+<!--<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">-->
+<h1 mat-dialog-title>{{title}}</h1>
+<mat-dialog-content form [formGroup]="form">
+<!--  <p>{{rCode}}</p>-->
+<!--  <h6 *ngIf="copied">   Copied !!!</h6>-->
+  <mat-form-field>
+    <input matInput type="text" placeholder="Receipt code" formControlName="recCode" readonly>
+    <mat-hint *ngIf="copied" align="end">Copied to clipboard</mat-hint>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="copyToClipBoard(rCode)">Copy</button>
+  <button mat-raised-button color="warn" (click)="close()">Close</button>
+</mat-dialog-actions>

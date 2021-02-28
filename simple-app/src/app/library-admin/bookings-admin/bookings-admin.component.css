@@ -1,0 +1,85 @@
+#edit-button, #delete-button, #add-button {
+  padding: 4px 25px 4px 25px;
+  text-align: center;
+}
+
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #E49D13;
+  box-shadow: 0 1px 0 0 #E49D13;
+}
+
+.active-pink input[type=text] {
+  border-bottom: 1px solid #E49D13;
+  box-shadow: 0 1px 0 0 #E49D13;
+}
+
+.active-pink .fa,
+.active-pink-2 .fa {
+  color: #E49D13;
+}
+
+.form-control {
+  padding-left: 2.375rem;
+  width: 100%;
+  background-color: #212529;
+  color: #FFFFFF;
+  border-color: #212529;
+}
+
+::placeholder {
+  color: #FFFFFF;
+  opacity: 0.9;
+}
+
+input::selection {
+  color: #000000;
+  background: #E49D13;
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+a {
+  cursor: pointer;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 650px;
+}
+
+.material-icons {
+  cursor: pointer;
+  color: #7971EA;
+}
+
+

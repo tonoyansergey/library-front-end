@@ -1,0 +1,7 @@
+.mat-form-field {
+  display: block;
+}
+
+.mat-error, .mat-hint {
+  font-size: 12px;
+}

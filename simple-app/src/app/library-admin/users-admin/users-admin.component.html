@@ -1,0 +1,103 @@
+<!--<div class="search-book">-->
+<!--  <form class="active-pink active-pink-2">-->
+<!--    <span class="fa fa-search form-control-feedback"></span>-->
+<!--    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching">-->
+<!--  </form>-->
+<!--</div>-->
+<!--<table  class="table table-hover table-sm table-light" id="booking-table">-->
+<!--  <thead class="thead-dark">-->
+<!--  <tr>-->
+<!--    <th scope="col">#</th>-->
+<!--    <th scope="col">First Name</th>-->
+<!--    <th scope="col">Last Name</th>-->
+<!--    <th scope="col">Username</th>-->
+<!--    <th scope="col">Email</th>-->
+<!--    <th scope="col">Role</th>-->
+<!--    <th scope="col">Edit</th>-->
+<!--    <th scope="col">Delete</th>-->
+<!--    <th scope="col"  width="10%"><button type="button" id="add-button" class="btn btn-outline-warning" (click)="addUser()">Add new user</button></th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let user of users | filter: searchText, let i = index">-->
+<!--    <th scope="row">{{user.id}}</th>-->
+<!--    <td>{{user.firstName}}</td>-->
+<!--    <td>{{user.lastName}}</td>-->
+<!--    <td>{{user.userName}}</td>-->
+<!--    <td>{{user.email}}</td>-->
+<!--    <td>{{user.role}}</td>-->
+<!--    <td><button type="button" class="btn btn-outline-primary" id="edit-button" (click)="editUser(i)">Edit</button></td>-->
+<!--    <td colspan="2"><button type="button" class="btn btn-outline-danger" id="delete-button" (click)="deleteUser(user.id)">Delete</button></td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+<div class="admin-content">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <em class="material-icons add-data" (click)="addUser()">person_add</em>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+      <!-- First Name Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell  *matCellDef="let row">{{row.firstName}} </mat-cell>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.lastName}}</mat-cell>
+      </ng-container>
+
+      <!-- Username Column -->
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Username</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.userName}}</mat-cell>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Role </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.role}}</mat-cell>
+      </ng-container>
+
+      <!-- Edit Column -->
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <em class="material-icons" (click)="editUser(row.id)">edit</em>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <em class="material-icons" (click)="deleteUser(row.id)">delete</em>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+  </div>
+</div>

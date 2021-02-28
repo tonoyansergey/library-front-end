@@ -1,0 +1,13 @@
+.mat-form-field {
+  display: block;
+  padding-bottom: 2%;
+}
+
+.mat-error, .mat-hint {
+  font-size: 12px;
+}
+
+.mat-dialog-title {
+  color: #7971EA;
+}
+

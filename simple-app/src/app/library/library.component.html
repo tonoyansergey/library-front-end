@@ -1,0 +1,60 @@
+
+<div class="site-wrap">
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+  <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center">
+        <div class="site-logo mr-auto w-25"><a routerLink="/library" routerLinkActive="active">Library</a></div>
+        <div class="mx-auto text-center">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+            <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
+              <li><a routerLink="/library/" [routerLinkActiveOptions]="{ exact: true }"   routerLinkActive="active" class="nav-link">Home</a></li>
+              <li><a routerLink="/library/books" routerLinkActive="active" class="nav-link">Books</a></li>
+              <li *ngIf="this.tokenService.isLogged()"><a routerLink="/library/profile" routerLinkActive="active" class="nav-link">Profile</a></li>
+              <!--              <li><a href="#teachers-section" class="nav-link">Teachers</a></li>-->
+            </ul>
+          </nav>
+        </div>
+
+        <div class="ml-auto w-25">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+            <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+              <li *ngIf="this.tokenService.isLogged() else elseBlock" class="cta"><a (click)="logOut()" class="nav-link" id="log-out-btn"><span >Log Out</span> </a></li>
+              <ng-template #elseBlock>
+                <li class="cta"><a routerLink="/library/login" class="nav-link"><span >Log In</span> </a></li>
+                <li class="cta"><a routerLink="/library/sign-up" class="nav-link"><span >Sign Up</span> </a></li>
+              </ng-template>
+            </ul>
+          </nav>
+          <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="intro-section" id="home-section">
+    <div id="div1" class="slide-1" style="background-image: url('../../assets/images/hero_1.jpg'); background-attachment: scroll;" data-stellar-background-ratio="0.5">
+      <div id="div2" class="container">
+        <div id="div3" class="row align-items-center">
+          <div id="div4" class="col-12">
+            <!--            <div class="row align-items-center">-->
+            <!--              <div data-aos="fade-up" data-aos-delay="500">-->
+
+            <router-outlet></router-outlet>
+
+          </div>
+        </div>
+        <!--          </div>-->
+        <!--        </div>-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<!--<div class="search-book">-->
+<!--  <form class="active-pink active-pink-2">-->
+<!--    <span class="fa fa-search form-control-feedback"></span>-->
+<!--    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching">-->
+<!--  </form>-->
+<!--</div>-->
+<!--<table  class="table table-hover table-sm table-light" id="booking-table">-->
+<!--  <thead class="thead-dark">-->
+<!--  <tr>-->
+<!--    <th scope="col">#</th>-->
+<!--    <th scope="col">User</th>-->
+<!--    <th scope="col">Book</th>-->
+<!--    <th scope="col">Receipt code</th>-->
+<!--    <th scope="col">Expires in</th>-->
+<!--    <th scope="col">Accept</th>-->
+<!--    <th scope="col">Reject</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let booking of bookings | filter: searchText, let i = index">-->
+<!--    <th scope="row">{{booking.id}}</th>-->
+<!--    <td><a (click)="showUserInfo(i)">{{booking.user.userName}}</a></td>-->
+<!--    <td><a (click)="showBookInfo(i)">{{booking.book.title}}</a></td>-->
+<!--    <td>{{booking.receiptCode}}</td>-->
+<!--    <td><countdown-timer (zeroTrigger)="rejectBooking(booking.id)" [end]=booking.expireDate></countdown-timer></td>-->
+<!--    <td><button type="button" class="btn btn-outline-primary" id="edit-button" (click)="acceptBooking(i, booking.id)">Accept</button></td>-->
+<!--    <td><button type="button" class="btn btn-outline-danger" id="delete-button" (click)="rejectBooking(booking.id)">Reject</button></td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
+<div class="admin-content">
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8 booking-table">
+
+  <mat-table [dataSource]="dataSource" matSort matSortActive="expireDate" matSortDirection="asc">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Username Column -->
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="user.userName"> Username </mat-header-cell>
+      <mat-cell  *matCellDef="let row"><a (click)="showUserInfo(row.id)">{{row.user.userName}}</a> </mat-cell>
+    </ng-container>
+
+    <!-- Book Column -->
+    <ng-container matColumnDef="book">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="book.title"> Book </mat-header-cell>
+      <mat-cell *matCellDef="let row"><a (click)="showBookInfo(row.id)">{{row.book.title}}</a></mat-cell>
+    </ng-container>
+
+    <!-- Receipt code Column -->
+    <ng-container matColumnDef="receiptCode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Receipt code </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.receiptCode}} </mat-cell>
+    </ng-container>
+
+    <!-- Timer Column -->
+    <ng-container matColumnDef="timer">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header="expireDate"> Timer </mat-header-cell>
+      <mat-cell *matCellDef="let row"><countdown-timer  [end]=row.expireDate></countdown-timer> </mat-cell>
+    </ng-container>
+
+    <!-- Accept Column -->
+    <ng-container matColumnDef="accept">
+      <mat-header-cell *matHeaderCellDef> Accept </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <em class="material-icons" (click)="acceptBooking(row.id)">done</em>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Reject Column -->
+    <ng-container matColumnDef="reject">
+      <mat-header-cell *matHeaderCellDef> Reject </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <em class="material-icons" (click)="rejectBooking(row.id)">clear</em>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+</div>
+</div>

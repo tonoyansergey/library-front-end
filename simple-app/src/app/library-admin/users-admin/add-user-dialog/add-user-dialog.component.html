@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>{{title}}</h1>
+
+<mat-dialog-content form [formGroup]="form">
+    <mat-form-field>
+    <input matInput type="text" placeholder="First name" formControlName="firstName" required>
+    <mat-hint align="end">Not more than 25 characters long</mat-hint>
+    <mat-error align="end" *ngIf="hasError('firstName', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('firstName', 'minlength')">Not less than 3 characters long</mat-error>
+    <mat-error align="end" *ngIf="hasError('firstName', 'maxlength')">You have more than 25 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Last name" formControlName="lastName" required>
+    <mat-hint align="end">Not more than 25 characters long</mat-hint>
+    <mat-error align="end" *ngIf="hasError('lastName', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('lastName', 'minlength')">Not less than 3 characters long</mat-error>
+    <mat-error align="end" *ngIf="hasError('lastName', 'maxlength')">You have more than 25 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Username" formControlName="userName" required>
+    <mat-hint align="end">Not more than 25 characters long</mat-hint>
+    <mat-error align="end" *ngIf="hasError('userName', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('userName', 'minlength')">Not less than 5 characters long</mat-error>
+    <mat-error align="end" *ngIf="hasError('userName', 'maxlength')">You have more than 25 characters</mat-error>
+    <mat-error align="end" *ngIf="hasError('userName', 'usernameExists')">Username is already taken</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="Password" formControlName="password" required>
+    <mat-hint align="end">Not more than 25 characters long</mat-hint>
+    <mat-error align="end" *ngIf="hasError('password', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('password', 'minlength')">Not less than 5 characters long</mat-error>
+    <mat-error align="end" *ngIf="hasError('password', 'maxlength')">You have more than 25 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="email" placeholder="Email" formControlName="email" required>
+    <mat-hint align="end">Pattern - example@gmail.com</mat-hint>
+    <mat-error align="end" *ngIf="hasError('email', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('email', 'pattern')">Wrong pattern</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select formControlName="role" placeholder="Role">
+      <mat-option value="USER">User</mat-option>
+    </mat-select>
+    <mat-error align="end" *ngIf="hasError('role', 'required')">Field is required</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [disabled]="!form.valid || form.untouched || !form.dirty" (click)="addUser()">Add</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>
+

@@ -1,0 +1,152 @@
+<mat-tab-group animationDuration="100ms" mat-align-tabs="left">
+
+  <mat-tab label="Statistics for period">
+    <div class="content">
+      <div class="period-selection">
+        <h4 class="title-period">Choose period</h4>
+        <div class="default-periods">
+          <button class="period-button" mat-raised-button color="" (click)="setDay(pickerStart, pickerEnd)">DAY</button>
+          <button class="period-button" mat-raised-button color="" (click)="setWeek(pickerStart, pickerEnd)">WEEK</button>
+          <button class="period-button" mat-raised-button color="" (click)="setMonth(pickerStart, pickerEnd)">MONTH</button>
+        </div>
+        <div class="picker" [formGroup]="form">
+          <mat-form-field class="date-field" color="primary">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerStart" formControlName="startDate" placeholder="Start date" readonly required>
+            <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="date-field" color="primary">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerEnd" formControlName="endDate" placeholder="End date" readonly required>
+            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div id="submit-button">
+          <button [disabled]="!form.valid" class="submit"  mat-raised-button color="primary" (click)="submit(form)">SUBMIT</button>
+        </div>
+      </div>
+
+      <div class="statistics">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header="object.id"> ID </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.object.id}} </mat-cell>
+            </ng-container>
+
+            <!-- Title Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef mat-sort-header="object.title"> Title </mat-header-cell>
+              <mat-cell  *matCellDef="let row">{{row.object.title}} </mat-cell>
+            </ng-container>
+
+            <!-- Genre Column -->
+            <ng-container matColumnDef="genre">
+              <mat-header-cell *matHeaderCellDef mat-sort-header="object.genre.genreName"> Genre </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.object.genre.genreName}}</mat-cell>
+            </ng-container>
+
+            <!-- Author Column -->
+            <ng-container matColumnDef="author">
+              <mat-header-cell *matHeaderCellDef mat-sort-header="object.author.authorName"> Author </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.object.author.authorName}}</mat-cell>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity">
+              <mat-header-cell *matHeaderCellDef  mat-sort-header="count"> Quantity ({{total}})</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.count}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="bookDisplayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: bookDisplayedColumns;"></mat-row>
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Top of library">
+    <mat-tab-group animationDuration="500ms" mat-align-tabs="center">
+      <mat-tab label="Books">
+        <div class="example-container mat-elevation-z8">
+          <mat-table [dataSource]="bookDataSource">
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+              <mat-cell *matCellDef="let i = index"> {{i+1}} </mat-cell>
+            </ng-container>
+            <!-- Book Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef> Book </mat-header-cell>
+              <mat-cell *matCellDef="let row, let i = index"><a (click)="showBookInfo(i)">{{row.object.title}}</a></mat-cell>
+            </ng-container>
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="count">
+              <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.count}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Genres">
+        <div class="example-container mat-elevation-z8">
+          <mat-table [dataSource]="genreDataSource">
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+              <mat-cell *matCellDef="let i = index"> {{i+1}} </mat-cell>
+            </ng-container>
+            <!-- Genre Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.object.genreName}}</mat-cell>
+            </ng-container>
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="count">
+              <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.count}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Authors">
+        <div class="example-container mat-elevation-z8">
+          <mat-table [dataSource]="authorDataSource">
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+              <mat-cell *matCellDef="let i = index"> {{i+1}} </mat-cell>
+            </ng-container>
+            <!-- Author Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.object.authorName}}</mat-cell>
+            </ng-container>
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="count">
+              <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.count}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-tab>
+</mat-tab-group>

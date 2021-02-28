@@ -1,0 +1,110 @@
+<!--<mat-tab-group animationDuration="100ms" mat-align-tabs="left">-->
+
+<!--  <mat-tab label="All">-->
+
+<!--    <div class="search-book">-->
+<!--      <form class="active-pink active-pink-2">-->
+<!--        <span class="fa fa-search form-control-feedback"></span>-->
+<!--        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching">-->
+<!--      </form>-->
+<!--    </div>-->
+
+<!--    <table  class="table table-hover table-sm table-light" id="booking-table">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">#</th>-->
+<!--        <th scope="col">User</th>-->
+<!--        <th scope="col">Book</th>-->
+<!--        <th scope="col">Loan date</th>-->
+<!--        <th scope="col">Expire date</th>-->
+<!--        <th scope="col">Left</th>-->
+<!--    &lt;!&ndash;    <th scope="col">Edit</th>&ndash;&gt;-->
+<!--        <th scope="col">Delete</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--        <tr *ngFor="let loan of loans | filter: searchText, let i = index">-->
+<!--          <th scope="row">{{loan.id}}</th>-->
+<!--          <td><a (click)="showUserInfo(i)">{{loan.user.userName}}</a></td>-->
+<!--          <td><a (click)="showBookInfo(i)">{{loan.book.title}}</a></td>-->
+<!--          <td>{{loan.loanDate | date:'MMM d, y, HH:mm'}}</td>-->
+<!--          <td>{{loan.expireDate | date:'MMM d, y, HH:mm'}}</td>-->
+<!--          <td><countdown-timer  [end]=loan.expireDate></countdown-timer></td>-->
+<!--      &lt;!&ndash;    <td><button type="button" class="btn btn-outline-primary" id="edit-button" >Edit</button></td>&ndash;&gt;-->
+<!--          <td><button type="button" class="btn btn-outline-danger" id="delete-button" (click)="openConfirmationDialog(loan.id)">Delete</button></td>-->
+<!--        </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+
+<!--  </mat-tab>-->
+
+<!--  <mat-tab label="Red zone">-->
+<!--  </mat-tab>-->
+
+<!--  <mat-tab label="Delayed">-->
+<!--  </mat-tab>-->
+
+<!--</mat-tab-group>-->
+
+<div class="admin-content">
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort matSortActive="expireDate" matSortDirection="asc">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Username Column -->
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="user.userName"> Username </mat-header-cell>
+      <mat-cell  *matCellDef="let row"><a (click)="showUserInfo(row.id)">{{row.user.userName}}</a> </mat-cell>
+    </ng-container>
+
+    <!-- Book Column -->
+    <ng-container matColumnDef="book">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="book.title"> Book </mat-header-cell>
+      <mat-cell *matCellDef="let row"><a (click)="showBookInfo(row.id)">{{row.book.title}}</a></mat-cell>
+    </ng-container>
+
+    <!-- Loan Date Column -->
+    <ng-container matColumnDef="loanDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Loan date </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.loanDate | date:'MMM d, y, HH:mm'}} </mat-cell>
+    </ng-container>
+
+    <!-- Expire Date Column -->
+    <ng-container matColumnDef="expireDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Expire date </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.expireDate | date:'MMM d, y, HH:mm'}} </mat-cell>
+    </ng-container>
+
+    <!-- Timer Column -->
+    <ng-container matColumnDef="timer">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="expireDate"> Timer </mat-header-cell>
+      <mat-cell *matCellDef="let row"><countdown-timer  [end]=row.expireDate></countdown-timer> </mat-cell>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <em class="material-icons" id="delete-icon" (click)="openConfirmationDialog(row.id)">delete</em>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+</div>
+</div>

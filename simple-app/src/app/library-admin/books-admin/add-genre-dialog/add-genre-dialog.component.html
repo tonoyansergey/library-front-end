@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{title}}</h1>
+
+<mat-dialog-content form [formGroup]="form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Genre name" formControlName="genreName" required>
+    <mat-hint align="end">Not more than 45 characters long</mat-hint>
+    <mat-error align="end" *ngIf="hasError('genreName', 'required')">Field is required</mat-error>
+    <mat-error align="end" *ngIf="hasError('genreName', 'minlength')">Not less than 2 characters long</mat-error>
+    <mat-error align="end" *ngIf="hasError('genreName', 'maxlength')">You have more than 45 characters</mat-error>
+    <mat-error align="end" *ngIf="hasError('genreName', 'genreExists')">Genre already exists</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="addGenre()">Add</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>
+

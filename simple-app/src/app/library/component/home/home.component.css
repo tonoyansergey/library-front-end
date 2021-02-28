@@ -1,0 +1,39 @@
+.wc h1{
+  font-size: 65px;
+}
+
+h1 {
+  font-size: 80px;
+}
+
+#booking-table {
+  background-color:rgba(27, 30, 33, 0.3);
+  text-align: center;
+  color: #f7f7f7;
+  width: 900px;
+}
+
+#cancel-button {
+  padding: 7px 25px 7px 25px;
+  text-align: center;
+}
+
+h5 {
+  color: #e7e7e7;
+}
+
+.bookings {
+  position: relative;
+  margin-top: 50px;
+  left: 20%;
+}
+
+.sign-login {
+  position: relative;
+  margin-top: 12%;
+}
+
+.material-icons {
+  cursor: pointer;
+  color: #ea282e;
+}

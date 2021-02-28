@@ -1,0 +1,18 @@
+.full-name {
+  margin-top: 6%;
+}
+
+.email {
+  color: #e7e7e7;
+}
+
+.edit button{
+  margin-right: 3%;
+  margin-top: 3%;
+}
+
+.profile-content {
+  position: relative;
+  left: 43%;
+  width: 60%;
+}
